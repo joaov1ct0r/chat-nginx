@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  nginx:
+    build:
+      args:
+        - NODE_ENV=production
+      context: .
+      dockerfile: Dockerfile
+    image: nginx_chat_dev
+    env_file: .env
+    environment:
+      - NODE_ENV=production
+      - NGINX_HOST=${NGINX_HOST}
+      - NGINX_PORT=${NGINX_PORT}
+    restart: always
+    ports:
+      - ${NGINX_PORT}:80
+
